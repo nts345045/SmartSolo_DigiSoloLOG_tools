@@ -17,7 +17,9 @@ import pandas as pd
 import numpy as np
 from tqdm import tqdm
 from glob import glob
-from glob import glob
+
+
+### SUBROUTINES ###
 
 def getlines(ifile):
 	"""
@@ -29,6 +31,7 @@ def getlines(ifile):
 def getblocklength(lines,i_start,flag=''):
 	"""
 	Get the number of line entries from a subset of lines
+
 	:: INPUTS ::
 	:type lines: list
 	:param lines: list of text lines
@@ -54,6 +57,9 @@ def getblocklength(lines,i_start,flag=''):
 
 
 def parse_block(iblock):
+	"""
+	Subroutine for parsing data within identified blocks, returns a series
+	"""
 	idict = {'Block':iblock[0]}
 	for i_ in np.arange(1,len(iblock)):
 		# try:
@@ -80,6 +86,8 @@ def parse_block(iblock):
 	S_ = pd.Series(idict,name=idx)
 	return S_
 
+
+#### CORE PROCESS ####
 
 def getblocks(ifile,start_delim='[',stop_flag=''):
 	blocks = []

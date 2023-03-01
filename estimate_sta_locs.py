@@ -21,6 +21,12 @@ myproj = Proj('epsg:32712')
 
 
 def load_parsed_LOGcsv(LOGcsv_fname):
+	"""
+	Wrapper to load tabulated data saved from CSVs generated with methods
+	in parse_DigiSolo.py
+
+	:param LOGcsv_fname: [string] file-name (and path) for a pandas.read_csv() call.
+	"""
 	df = pd.read_csv(LOGcsv_fname,parse_dates=True,index_col=[0])
 	return df
 
@@ -75,6 +81,8 @@ def run_KMeans_4D(df_ENH,n_clusters=2,n_init=10):
 	return df_out
 
 
+
+### WORKED EXAMPLE ###
 
 ROOT = os.path.join('..','..','processed_data','passive','metadata','LOG')
 DATA = glob(os.path.join(ROOT,'*','*','Parsed_DigiSolo_LOG.csv'))
